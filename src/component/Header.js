@@ -20,10 +20,10 @@ function Header({ isLoggedIn, firstName }) {
             <div>
                 {isLoggedIn ? (
                     <>
-                        <a className="main-nav-item" href="./user.html">
+                        <Link className="main-nav-item" href="/">
                             <FontAwesomeIcon icon={faUserCircle} />
                             {firstName}
-                        </a>
+                        </Link>
                         <Link className="main-nav-item" to="/">
                             <FontAwesomeIcon icon={faSignOutAlt} />
                             Sign Out
