@@ -1,0 +1,40 @@
+.edit-user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  .bloc{
+    display: flex;
+    gap: 1rem;
+  }
+
+  input {
+    font-size: 1rem;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .save-button,
+  .cancel-button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      color: #0052cc;
+      background-color: #f0f0f0;
+    }
+  }
+
+  .button {
+    color: white;
+    background-color: #0052cc;
+  }
+}

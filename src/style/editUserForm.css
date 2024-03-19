@@ -1,0 +1,39 @@
+.edit-user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.edit-user-form .bloc {
+  display: flex;
+  gap: 1rem;
+}
+.edit-user-form input {
+  font-size: 1rem;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.edit-user-form .save-button,
+.edit-user-form .cancel-button {
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.edit-user-form .save-button:hover,
+.edit-user-form .cancel-button:hover {
+  color: #0052cc;
+  background-color: #f0f0f0;
+}
+.edit-user-form .button {
+  color: white;
+  background-color: #0052cc;
+}
+
+/*# sourceMappingURL=editUserForm.css.map */
