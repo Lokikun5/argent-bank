@@ -20,8 +20,9 @@ async function verifyUser(email, password) {
 }
 
 async function getUserProfile(token) {
+
     try {
-        const response = await apiClient.get('/user/profile', {
+        const response = await apiClient.post('/user/profile', {}, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -32,7 +33,7 @@ async function getUserProfile(token) {
     }
 }
 
-async function editProfile(token, firstName, lastName ){
+async function editProfile( firstName, lastName, token ){
     try {
         const response = await apiClient.put('/user/profile', {
             firstName,

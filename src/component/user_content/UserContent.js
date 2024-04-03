@@ -3,6 +3,7 @@ import "../../style/user-content.scss";
 import AccountsSection from "./AccountsSection";
 import EditUserFromSection from "./EditUserFromSection";
 function UserContent ({ firstName, lastName, accounts }){
+
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditClick = () => {

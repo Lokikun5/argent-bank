@@ -2,28 +2,31 @@ import React from 'react';
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import UserContent from "../component/user_content/UserContent";
-import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import { USER_DATA_FORMATTED as userData } from '../data_test/data-user';
 
 function UserView() {
-    const { userId } = useParams();
-    const user = userData.find(user => user.id === Number(userId));
+    const userProfile = useSelector((state) => state.user.userProfile);
 
-    const accountsData = user ? user.accounts.map(account => ({
+    const firstName = userProfile?.body?.firstName;
+    const lastName = userProfile?.body?.lastName;
+
+    //mocking data Accounts info
+    const userAccountsData = userData.find(user => user.id === 100);
+
+    const accountsData = userAccountsData ? userAccountsData.accounts.map(account => ({
         type: account.type,
-        balance: account.transactions[account.transactions.length - 1].balance
+        balance: account.transactions[account.transactions.length - 1].balance,
     })) : [];
 
     return (
         <div>
-            <Header isLoggedIn={Boolean(user)} firstName={user?.userInfos?.firstName} />
-            {user ? (
-                <UserContent firstName={user.userInfos.firstName}
-                             lastName={user.userInfos.lastName}
-                             accounts={accountsData}/>
-            ) : (
-                <p>User not found</p>
-            )}
+            <Header isLoggedIn={Boolean(userProfile)} firstName={firstName} lastName={lastName} />
+            <UserContent
+                firstName={firstName}
+                lastName={lastName}
+                accounts={accountsData}
+            />
             <Footer />
         </div>
     );

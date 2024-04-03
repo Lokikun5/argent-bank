@@ -1,5 +1,7 @@
 import '../src/style/App.scss';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store';
 import HomePage from "../src/pages/HomePage";
 import SignInPage from "./pages/SignInPage";
 import UserView from "./pages/UserView";
@@ -13,13 +15,16 @@ const router = createBrowserRouter([
     element: <SignInPage/>,
   },
   {
-    path: 'user/:userId',
+    path: 'user',
     element: <UserView />
   }
 
 ])
 function App() {
-  return <RouterProvider router={router}/>
+  return (<Provider store={store}>
+          <RouterProvider router={router}/>
+        </Provider>
+  )
 }
 
 export default App;
