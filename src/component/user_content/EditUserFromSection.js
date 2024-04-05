@@ -15,15 +15,15 @@ function EditUserFromSection({ firstName, lastName, onCancel, onSave }) {
     const dispatch = useDispatch();
     const token = useSelector(state => state.user.token);
 
-
-    //handle Submit test reponse API
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // test token JWT statique
         try {
+            if (!newFirstName.trim() || !newLastName.trim()) {
+                setErrorMessage('Both fields are required.');
+                return;
+            }
             const user = await editProfile( newFirstName, newLastName, token);
-            console.log(token);
-            console.log(user);
+
             dispatch(updateUserProfile(user));
             onSave();
         } catch (error) {

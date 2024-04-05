@@ -21,6 +21,7 @@ function SignInContent () {
             const user = await verifyUser(email, password);
             dispatch(setUserToken(user.body.token));
 
+            //access user page
             const userProfile = await getUserProfile(user.body.token);
             dispatch(setUserProfile(userProfile));
             navigate(`/user`);
