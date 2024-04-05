@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  title: Bank Argent API documentation
+  description: Proposes new API endpoints methodologies for enhanced user profile management and related functionalities.
+  version: '1.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+servers:
+  - url: http://localhost:3001/api/v1
+paths:
+  /user/profile:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Module
+      summary: User Profile API
+      description: fetching a user profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Authorization:
+                  type: string
+                  description: Attach Bearer JWT token
+      responses:
+        '200':
+          description: User profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /user/profile/transaction:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Module Transaction
+      summary: User Transaction API
+      description: Get all user transactions
+      parameters:
+        - in: header
+          name: securitySchemes
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User transactions retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /user/profile/transaction/{id}:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Module Transaction
+      summary: User Transaction API
+      description: API for fetching one user transaction
+      parameters:
+        - in: header
+          name: securitySchemes
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'ID of the transaction to fetch'
+      responses:
+        '200':
+          description: User Transaction retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Module Transaction
+      summary: User Transaction API
+      description: API for updating a user transaction
+      parameters:
+        - in: header
+          name: securitySchemes
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'ID of one transaction to update'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionUpdate'
+      responses:
+        '200':
+          description: User Transaction updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid Fields
+        '404':
+          description: Transaction not found
+        '500':
+          description: Internal Server Error
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - User Module Transaction
+      summary: User Transaction API
+      description: API for deleting a user transaction
+      parameters:
+        - in: header
+          name: securitySchemes
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: 'ID of the transaction to delete'
+      responses:
+        '200':
+          description: User Transaction deleted successfully
+        '400':
+          description: Invalid Fields
+        '404':
+          description: Transaction not found
+        '500':
+          description: Internal Server Error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        body:
+          type: object
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        transactionData:
+          type: object
+          properties:
+            date:
+              type: string
+            description:
+              type: string
+            amount:
+              type: number
+            detail:
+              type: object
+              properties:
+                typeoftransaction:
+                  type: string
+                category:
+                  type: string
+                notes:
+                  type: string
+    TransactionUpdate:
+      type: object
+      properties:
+        category:
+          type: string
+        notes:
+          type: string
+ 

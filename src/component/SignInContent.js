@@ -26,7 +26,12 @@ function SignInContent () {
             navigate(`/user`);
         } catch (error) {
             console.error("An error occurred:", error);
-            setErrorMessage(error.message || 'An error occurred');
+            let message = error.message || 'An error occurred';
+            if (message === "error.response is undefined") {
+                // Customize the error message for this specific case
+                message = "error.server problem";
+            }
+            setErrorMessage(message);
         }
     };
 
