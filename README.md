@@ -1,3 +1,7 @@
+#Additional note
+
+Initialization of the back-end:
+follow the readme of the back-end folder and execute ###`npm run dev:server` in the directory
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
